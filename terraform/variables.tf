@@ -5,12 +5,12 @@ variable "location" {
 
 variable "resource_group_name" {
   type    = string
-  default = "civicpulserg"
+  default = "civicpulserg24"
 }
 
 variable "storage_account" {
   type    = string
-  default = "civicstorageacct"
+  default = "civicstorageacct22"
 }
 
 variable "db_admin_login" {
@@ -25,5 +25,5 @@ variable "db_admin_pass" {
 
 variable "postgres_server" {
   type    = string
-  default = "civiclogicserver3"
+  default = "civiclogicserver33"
 }

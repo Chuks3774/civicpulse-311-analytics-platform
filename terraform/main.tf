@@ -1,10 +1,10 @@
 resource "azurerm_resource_group" "civicpulserg" {
-  name     = "civicpulserg"
+  name     = "civicpulserg24"
   location = "southafricanorth"
 }
 
 resource "azurerm_storage_account" "civicpulse" {
-  name                     = "civicpulse22"
+  name                     = "civicpulse22456"
   resource_group_name      = azurerm_resource_group.civicpulserg.name
   location                 = azurerm_resource_group.civicpulserg.location
   account_tier             = "Standard"
@@ -66,21 +66,17 @@ resource "azurerm_postgresql_flexible_server_database" "civiclogicdb" {
     prevent_destroy = false
   }
 }
-resource "azurerm_data_factory" "civiclogic" {
-  name                = "civiclogic"
+ resource "azurerm_data_factory" "civiclogic" {
+  name                = "civiclogic25"
   location            = azurerm_resource_group.civicpulserg.location
   resource_group_name = azurerm_resource_group.civicpulserg.name
 }
 
-data "azurerm_storage_account" "storageaccountdata" {
-  name                = azurerm_storage_account.civicpulse.name
-  resource_group_name = azurerm_resource_group.civicpulserg.name
-}
 
 resource "azurerm_data_factory_linked_service_azure_blob_storage" "civiclogicstoragels" {
   name              = "civiclogic_blob_ls"
   data_factory_id   = azurerm_data_factory.civiclogic.id
-  connection_string = data.azurerm_storage_account.storageaccountdata.primary_connection_string
+  connection_string = azurerm_storage_account.civicpulse.primary_connection_string
 }
 
 module "data_factory_blob_storage" {
